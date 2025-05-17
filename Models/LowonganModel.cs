@@ -1,14 +1,15 @@
 // Models/Lowongan.cs
 
-namespace KonstruksiPerangkatLunak.Models
+namespace TubesApi.Models
 {
     public class LowonganModel
     {
         public int Id { get; set; }
-        public string? Judul { get; set; }
-        public string? Deskripsi { get; set; }
-        public string? Kategori { get; set; }
-        public DateTime TanggalPosting { get; set; } = DateTime.Now;
-        public string? DiperuntukkanUntuk { get; set; } // contoh: "Freelance" / "Client"
+        public string namaPerusahaan { get; set; }
+        public string title { get; set; }
+        public string kriteria { get; set; }
+        public string deskripsi { get; set; }
+        public string lokasi { get; set; }
+        public string gaji { get; set; }// contoh: "Freelance" / "Client"
     }
 }

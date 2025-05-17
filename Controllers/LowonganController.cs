@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using KonstruksiPerangkatLunak.Models;
+using TubesApi.Models;
 
-namespace KonstruksiPerangkatLunak.Controllers
+namespace TubesApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

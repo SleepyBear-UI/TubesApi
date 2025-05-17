@@ -1,16 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using KonstruksiPerangkatLunak.Models;
+using TubesApi.Models;
 
-namespace KonstruksiPerangkatLunak.Controllers
+namespace TubesApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class LamaranController : ControllerBase
+    public class LowonganPelamarController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public LamaranController(ApplicationDbContext context)
+        public LowonganPelamarController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -19,7 +19,7 @@ namespace KonstruksiPerangkatLunak.Controllers
         public async Task<IActionResult> GetAll()
         {
             var lamarans = await _context.Lamarans
-                .Include(l => l.Applicant)
+                .Include(l => l.Pelamar)
                 .Include(l => l.Lowongan)
                 .ToListAsync();
 
@@ -27,18 +27,18 @@ namespace KonstruksiPerangkatLunak.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Lamaran lamaran)
+        public async Task<IActionResult> Create(LowonganPelamarModel lamaran)
         {
             _context.Lamarans.Add(lamaran);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetAll), new { id = lamaran.Id }, lamaran);
         }
 
-        [HttpGet("applicant/{applicantId}")]
-        public async Task<IActionResult> GetByApplicant(int applicantId)
+        [HttpGet("lamarans/{lamaransId}")]
+        public async Task<IActionResult> GetByApplicant(int pelamarId)
         {
             var lamarans = await _context.Lamarans
-                .Where(l => l.ApplicantId == applicantId)
+                .Where(l => l.PelamarId == pelamarId)
                 .Include(l => l.Lowongan)
                 .ToListAsync();
 
